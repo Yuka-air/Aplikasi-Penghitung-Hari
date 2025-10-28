@@ -26,7 +26,7 @@ public class AplikasiPenghitungHari extends javax.swing.JFrame {
         
         comboBulan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // Panggil metode sinkronisasi yang SAMA
+                
                 sinkronkanInputKeCalendar();
             }
         });
@@ -97,6 +97,7 @@ public class AplikasiPenghitungHari extends javax.swing.JFrame {
         lblHariTerakhir = new javax.swing.JLabel();
         lblKabisat = new javax.swing.JLabel();
         lblSelisihHari = new javax.swing.JLabel();
+        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,6 +123,11 @@ public class AplikasiPenghitungHari extends javax.swing.JFrame {
         });
 
         jButton3.setText("Clear");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         lblHasil.setText("Jumlah hari:");
 
@@ -132,6 +138,13 @@ public class AplikasiPenghitungHari extends javax.swing.JFrame {
         lblKabisat.setText("Status");
 
         lblSelisihHari.setText("Selisih Hari");
+
+        btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -161,20 +174,23 @@ public class AplikasiPenghitungHari extends javax.swing.JFrame {
                                     .addComponent(jCalendar1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                                     .addComponent(jCalendar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(237, 237, 237)
-                                        .addComponent(btnHitung)
-                                        .addGap(29, 29, 29)
-                                        .addComponent(jButton3))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(251, 251, 251)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblHasil)
                                             .addComponent(lblHariPertama)
                                             .addComponent(lblHariTerakhir)
                                             .addComponent(lblKabisat)
-                                            .addComponent(lblSelisihHari))))))))
-                .addGap(205, 205, Short.MAX_VALUE))
+                                            .addComponent(lblSelisihHari)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(237, 237, 237)
+                                        .addComponent(btnHitung)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 3, Short.MAX_VALUE)))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(109, 109, 109))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,11 +229,10 @@ public class AplikasiPenghitungHari extends javax.swing.JFrame {
                         .addGap(160, 160, 160)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnHitung)
-                            .addComponent(jButton3))
-                        .addGap(107, 107, 107))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCalendar2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                            .addComponent(jButton3)
+                            .addComponent(btnExit)))
+                    .addComponent(jCalendar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -331,6 +346,40 @@ public class AplikasiPenghitungHari extends javax.swing.JFrame {
             "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_btnHitungActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    comboBulan.setSelectedIndex(0);
+    
+    
+    int tahunSekarang = java.time.LocalDate.now().getYear();
+    spinnerTahun.setValue(tahunSekarang);
+    
+    
+    lblHasil.setText("Jumlah hari:");
+    lblHariPertama.setText("Hari pertama:");
+    lblHariTerakhir.setText("Hari terakhir:");
+    lblKabisat.setText("Status:");
+    lblSelisihHari.setText("Selisih hari:");
+    
+    
+    java.util.Date tanggalSekarang = new java.util.Date();
+    jCalendar1.setDate(tanggalSekarang);
+    jCalendar2.setDate(tanggalSekarang);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        int confirm = javax.swing.JOptionPane.showConfirmDialog(
+        this,
+        "Apakah Anda yakin ingin keluar dari aplikasi?",
+        "Konfirmasi Keluar",
+        javax.swing.JOptionPane.YES_NO_OPTION,
+        javax.swing.JOptionPane.QUESTION_MESSAGE
+    );
+
+    if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+        System.exit(0);
+    }
+    }//GEN-LAST:event_btnExitActionPerformed
     private void setupEventListeners() {
         btnHitung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -376,6 +425,7 @@ public class AplikasiPenghitungHari extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHitung;
     private javax.swing.JComboBox<String> comboBulan;
     private javax.swing.JButton jButton3;
